@@ -6,6 +6,7 @@ import { GlassmorphismStudio } from '../projects/day-04/GlassmorphismStudio';
 import { CronExplainer } from '../projects/day-05/CronExplainer';
 import { MarkdownStudio } from '../projects/day-06/MarkdownStudio';
 import { Day07Tool } from '../projects/day-07/Day07Tool';
+import { Day08Tool } from '../projects/day-08/Day08Tool';
 
 export const PROJECTS_REGISTRY: ProjectDay[] = [
   {
@@ -181,5 +182,29 @@ const readTimeMinutes = Math.max(1, Math.ceil(words / 200));`,
     description: 'Daily engineering challenge and interactive utility for Day 7',
     component: Day07Tool,
     codeSnippet: `// Day 7: URL Slugifier & Meta Tag Generator implementation\nexport const Day07Tool = () => { ... };`,
+  },
+  {
+    day: 8,
+    id: 'day-08-base64-file-image-studio',
+    title: 'Base64 File & Image Studio',
+    tagline: 'Drag-and-drop file encoder, image previewer, and Base64-to-binary decoder',
+    category: 'Utility',
+    date: 'Day 8',
+    difficulty: 'Intermediate',
+    tags: ['Base64', 'FileReader', 'Blob', 'RFC 4648', 'Assets'],
+    complexity: {
+      time: 'O(N) file streaming',
+      space: 'O(N) 33% expanded buffer',
+    },
+    keyTakeaway: 'Base64 encodes 3 binary bytes into 4 ASCII characters, resulting in an exact 33.3% payload size expansion.',
+    description: 'An interactive dual-mode file and image studio to encode media to Data URIs, compute file size tax, and decode Base64 back into viewable files.',
+    component: Day08Tool,
+    codeSnippet: `// File to Base64 Data URI via FileReader API
+const reader = new FileReader();
+reader.onload = (e) => {
+  const dataUri = e.target?.result as string;
+  setDataUri(dataUri);
+};
+reader.readAsDataURL(file);`,
   },
 ];
