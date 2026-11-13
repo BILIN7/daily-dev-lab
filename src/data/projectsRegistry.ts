@@ -7,6 +7,7 @@ import { CronExplainer } from '../projects/day-05/CronExplainer';
 import { MarkdownStudio } from '../projects/day-06/MarkdownStudio';
 import { Day07Tool } from '../projects/day-07/Day07Tool';
 import { Day08Tool } from '../projects/day-08/Day08Tool';
+import { Day09Tool } from '../projects/day-09/Day09Tool';
 
 export const PROJECTS_REGISTRY: ProjectDay[] = [
   {
@@ -206,5 +207,29 @@ reader.onload = (e) => {
   setDataUri(dataUri);
 };
 reader.readAsDataURL(file);`,
+  },
+  {
+    day: 9,
+    id: 'day-09-binary-search-tree-visualizer',
+    title: 'Binary Search Tree Visualizer',
+    tagline: 'Interactive BST node insertion, search path highlighter, and traversals',
+    category: 'Algorithm Visualizer',
+    date: 'Day 9',
+    difficulty: 'Intermediate',
+    tags: ['BST', 'Trees', 'Recursion', 'Data Structures', 'Traversals'],
+    complexity: {
+      time: 'O(log N) average, O(N) worst',
+      space: 'O(H) recursion stack height',
+    },
+    keyTakeaway: 'In-order traversal (Left -> Root -> Right) on a valid BST always produces values in monotonically ascending sorted order.',
+    description: 'An interactive SVG tree visualizer supporting dynamic node insertion, recursive path search, depth calculations, and in-order / pre-order / post-order traversals.',
+    component: Day09Tool,
+    codeSnippet: `// BST Insertion Algorithm
+const insertNode = (current: TreeNode | null, val: number): TreeNode => {
+  if (!current) return { val, left: null, right: null };
+  if (val < current.val) current.left = insertNode(current.left, val);
+  else if (val > current.val) current.right = insertNode(current.right, val);
+  return current;
+};`,
   },
 ];
