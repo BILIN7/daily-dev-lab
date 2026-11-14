@@ -8,6 +8,7 @@ import { MarkdownStudio } from '../projects/day-06/MarkdownStudio';
 import { Day07Tool } from '../projects/day-07/Day07Tool';
 import { Day08Tool } from '../projects/day-08/Day08Tool';
 import { Day09Tool } from '../projects/day-09/Day09Tool';
+import { Day10Tool } from '../projects/day-10/Day10Tool';
 
 export const PROJECTS_REGISTRY: ProjectDay[] = [
   {
@@ -231,5 +232,25 @@ const insertNode = (current: TreeNode | null, val: number): TreeNode => {
   else if (val > current.val) current.right = insertNode(current.right, val);
   return current;
 };`,
+  },
+  {
+    day: 10,
+    id: 'day-10-password-entropy-security-studio',
+    title: 'Password Entropy & Security Studio',
+    tagline: 'Shannon entropy analyzer, GPU brute-force crack time estimator, and CSPRNG generator',
+    category: 'Security & Auth',
+    date: 'Day 10',
+    difficulty: 'Intermediate',
+    tags: ['Entropy', 'Security', 'Cryptography', 'CSPRNG', 'BruteForce'],
+    complexity: {
+      time: 'O(N) character scan',
+      space: 'O(1) bit metrics',
+    },
+    keyTakeaway: 'Password entropy scales logarithmically with character pool size: E = L * log2(R). Increasing length exponentially outperforms adding symbols.',
+    description: 'An interactive security auditor that computes Shannon entropy bits, evaluates offline GPU hash cracking exhaustion times, and provides a CSPRNG cryptographically secure password generator.',
+    component: Day10Tool,
+    codeSnippet: `// Shannon Entropy Formula: E = L * log2(R)
+const poolSize = (hasLower ? 26 : 0) + (hasUpper ? 26 : 0) + (hasNum ? 10 : 0) + (hasSym ? 33 : 0);
+const entropy = +(length * Math.log2(poolSize || 1)).toFixed(1);`,
   },
 ];
