@@ -9,6 +9,7 @@ import { Day07Tool } from '../projects/day-07/Day07Tool';
 import { Day08Tool } from '../projects/day-08/Day08Tool';
 import { Day09Tool } from '../projects/day-09/Day09Tool';
 import { Day10Tool } from '../projects/day-10/Day10Tool';
+import { Day11Tool } from '../projects/day-11/Day11Tool';
 
 export const PROJECTS_REGISTRY: ProjectDay[] = [
   {
@@ -252,5 +253,25 @@ const insertNode = (current: TreeNode | null, val: number): TreeNode => {
     codeSnippet: `// Shannon Entropy Formula: E = L * log2(R)
 const poolSize = (hasLower ? 26 : 0) + (hasUpper ? 26 : 0) + (hasNum ? 10 : 0) + (hasSym ? 33 : 0);
 const entropy = +(length * Math.log2(poolSize || 1)).toFixed(1);`,
+  },
+  {
+    day: 11,
+    id: 'day-11-wcag-contrast-color-harmony-studio',
+    title: 'WCAG Contrast & Color Harmony Studio',
+    tagline: 'WCAG 2.1 contrast ratio calculator, AA/AAA compliance auditor, and color harmony generator',
+    category: 'CSS & UI Studio',
+    date: 'Day 11',
+    difficulty: 'Intermediate',
+    tags: ['Accessibility', 'WCAG', 'ColorTheory', 'Contrast', 'CSS', 'UI'],
+    complexity: {
+      time: 'O(1) relative luminance math',
+      space: 'O(1) color tokens',
+    },
+    keyTakeaway: 'WCAG 2.1 relative luminance accounts for human eye spectral sensitivity (Green 71.5%, Red 21.3%, Blue 7.2%). Normal text requires at least 4.5:1 for AA.',
+    description: 'An interactive design accessibility studio that evaluates contrast ratios against WCAG 2.1 AA/AAA guidelines, previews accessible live UI typography, and generates harmonic palettes.',
+    component: Day11Tool,
+    codeSnippet: `// Relative Luminance & WCAG Contrast Formula
+const lum = 0.2126 * r_s + 0.7152 * g_s + 0.0722 * b_s;
+const contrastRatio = (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);`,
   },
 ];
