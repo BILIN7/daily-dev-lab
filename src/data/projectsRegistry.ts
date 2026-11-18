@@ -10,6 +10,7 @@ import { Day08Tool } from '../projects/day-08/Day08Tool';
 import { Day09Tool } from '../projects/day-09/Day09Tool';
 import { Day10Tool } from '../projects/day-10/Day10Tool';
 import { Day11Tool } from '../projects/day-11/Day11Tool';
+import { Day12Tool } from '../projects/day-12/Day12Tool';
 
 export const PROJECTS_REGISTRY: ProjectDay[] = [
   {
@@ -273,5 +274,27 @@ const entropy = +(length * Math.log2(poolSize || 1)).toFixed(1);`,
     codeSnippet: `// Relative Luminance & WCAG Contrast Formula
 const lum = 0.2126 * r_s + 0.7152 * g_s + 0.0722 * b_s;
 const contrastRatio = (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);`,
+  },
+  {
+    day: 12,
+    id: 'day-12-uuid-v4-nanoid-generator',
+    title: 'UUID v4, NanoID & ULID Generator',
+    tagline: 'CSPRNG unique identifier generator with collision probability analysis and bulk export',
+    category: 'Utility',
+    date: 'Day 12',
+    difficulty: 'Intermediate',
+    tags: ['UUID', 'NanoID', 'ULID', 'CSPRNG', 'Cryptography', 'DatabaseKeys'],
+    complexity: {
+      time: 'O(N) batch size',
+      space: 'O(N) identifier array',
+    },
+    keyTakeaway: 'ULIDs combine a 48-bit millisecond timestamp with 80 bits of cryptographic randomness to preserve B-tree index locality while avoiding collision.',
+    description: 'A multi-format identifier studio supporting RFC 4122 UUID v4, compact URL-safe NanoID, and timestamp-sortable ULID with entropy metrics and one-click export.',
+    component: Day12Tool,
+    codeSnippet: `// Cryptographically Secure UUID v4 Generator
+const bytes = new Uint8Array(16);
+window.crypto.getRandomValues(bytes);
+bytes[6] = (bytes[6] & 0x0f) | 0x40; // Version 4
+bytes[8] = (bytes[8] & 0x3f) | 0x80; // Variant 10xx`,
   },
 ];
